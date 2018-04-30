@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const encryption = require("../util/encryption");
 
 const userSchema = new mongoose.Schema({
-    username:{
+    email:{
         type:mongoose.Schema.Types.String,
         required:true,
         unique:true
@@ -36,7 +36,7 @@ User.seedAdminUser = ()=>{
      let salt = encryption.generateSalt();
      let hashedPass = encryption.generateHashedPassword(salt,'aD12min');
      User.create({
-        username:"Admin",
+        email:"Admin",
         hashedPass,
         salt,
         roles:["Admin"]

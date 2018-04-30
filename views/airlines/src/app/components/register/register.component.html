@@ -1,3 +1,64 @@
-<p>
-  register works!
-</p>
+<h2>Create your accout:</h2>
+<form #regForm="ngForm">
+        <div class="form-group">
+    <label for="name">Name:</label>
+    <input 
+    id="name"
+    type="text" 
+    [(ngModel)] = "userData.name"
+    name = "name"
+    #name = "ngModel"
+    class="form-control" 
+    placeholder="Name"
+    minlength="2"
+    maxlength="20"
+    required>
+    <div [hidden]="name.pristine || !name.pristine && name.valid" class="alert-danger">name is required</div>
+    <div [hidden]="!name.errors?.minlength || name.pristine" class="alert-danger">name is required, must be between 2 and 20 chars long</div>
+    </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input id="email"
+        type="email" 
+        class="form-control" 
+        name="email" 
+        #email="ngModel"
+        [(ngModel)]="userData.email"
+        placeholder="Enter your Email" 
+        pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
+        required/>
+        <div [hidden]="email.pristine || !email.pristine && email.valid" class="alert-danger">email is required</div>
+        <div [hidden]="!email.errors?.pattern && !email.pristine || email.pristine" class="alert-danger">email is invalid</div>
+        </div>
+    
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input id="password"
+            [(ngModel)]="userData.password"
+            class="form-control"
+            name="password"
+            type="password"
+            #password="ngModel"
+             placeholder="Enter your Password" 
+             required/>
+             <div [hidden]="password.pristine || password.valid" class="alert-danger">password is required</div>
+             </div>
+
+
+     <div class="form-group">
+    <label for="repeated">Repeat Password:</label>
+    <input id="repeated"
+    [(ngModel)]="userData.repeated"
+    class="form-control"
+    name="repeated"
+    type="password"
+    #repeated="ngModel"
+     placeholder="Repeat your Password" 
+     required/>
+     <div [hidden]="password.value == repeated.value || password.pristine && repeated.pristine" class="alert-danger">passwords do not match</div>
+     </div>
+
+     <input type="submit" class="register" value="Register" (click)="register(userData)"
+    [disabled]="regForm.invalid"/>
+    
+</form>
