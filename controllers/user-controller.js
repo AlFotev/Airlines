@@ -1,5 +1,7 @@
 const encryption = require('../util/encryption');
 const User = require('../models/User');
+let name = '';
+let access = [];
 module.exports = {
     loginPost: (req, res) => {
         let reqUser = req.body;
@@ -9,12 +11,17 @@ module.exports = {
                     res.send({ "msg": "wrong" })
                     return
                 }
+                name = user.name;
+                access = user.roles;
                 req.logIn(user, (err, user) => {
                     if (err) {
-                        res.send(err);
+                        res.send({ "msg": "wrong" })
                     } else {
-                        res.locals.currentUser = req.user;
-                        res.send({ "msg": "success", });
+                        res.send({
+                            "msg": "success",
+                            "name": name,
+                            "access":access
+                        });
                     }
                 })
 
@@ -24,29 +31,34 @@ module.exports = {
             })
     },
     register: async (req, res) => {
-            const userReq = req.body;
-            const salt = encryption.generateSalt();
-            const hashedPass = encryption.generateHashedPassword(salt, userReq.password);
-            try {
-                const user = await User.create({
-                    email: userReq.email,
-                    hashedPass: hashedPass,
-                    firstName: userReq.firstName,
-                    salt,
-                    roles: []
-                });
-    
-                req.logIn(user, (err, user) => {
-                    if (err) {
-                        res.send({"msg":"logfail"});
-                    } else {
-                        res.locals.currentUser = req.user;
-                        res.send({"msg":"success"});
-                    }
-                });
-            } catch (e) {
+        const userReq = req.body;
+        const salt = encryption.generateSalt();
+        const hashedPass = encryption.generateHashedPassword(salt, userReq.password);
+        try {
+            const user = await User.create({
+                email: userReq.email,
+                hashedPass: hashedPass,
+                name: userReq.name,
+                salt,
+                roles: []
+            });
+            name = user.name;
+            req.logIn(user, (err, user) => {
+                if (err) {
+                    res.send({ "msg": "logfail" });
+                } else {
 
-                res.send({ "msg": e });
-            }
+                    res.send({
+                        "msg": "success",
+                        "name": name
+                    });
+                }
+            });
+        } catch (e) {
+            res.send({ "msg": "creationFail" });
+        }
+    },
+    logout: (req, res) => {
+        req.logout();
     }
 }

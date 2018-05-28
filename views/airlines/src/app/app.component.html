@@ -2,10 +2,16 @@
     <div class="navigation">
         <ul>
             <li><a routerLink="/flights">Flights</a></li>
-            <li><a routerLink="/login">Login</a></li>
-            <li><a routerLink="/register">Register</a></li>
+            <li *ngIf="!session.checkSession()"><a routerLink="/login">Login</a></li>
+            <li *ngIf="!session.checkSession()"><a routerLink="/register">Register</a></li>
+            <li *ngIf="session.checkSession()"><a routerLink="/mytickets">My Tickets</a></li>
+            <li *ngIf="session.isAdmin()">
+                <a routerLink="/admin">Admin</a>
+              </li>
+            <li (click)='logout()' *ngIf="session.checkSession()">Logout</li>
         </ul>
     </div>
+    <p *ngIf="session.checkSession()" class="welcome">Hello , {{session.getName()}}!</p>
   </nav>
 <router-outlet></router-outlet>
 

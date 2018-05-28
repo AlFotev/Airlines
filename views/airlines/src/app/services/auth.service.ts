@@ -25,16 +25,23 @@ export class AuthService {
             httpOptions
         )
     }
-    register(data):Observable<{}> {
+    register(data): Observable<{}> {
         let body = {
             email: data.email,
-            name:data.name,
+            name: data.name,
             password: data.password
         }
         return this.http.post(
             addr + "register",
             body,
-            httpOptions
-        )
+            httpOptions)
+        }
+        logout(){
+            this.http.post(
+                addr + "logout",
+                {},
+                httpOptions
+            )
+        }
+                
     }
-}

@@ -1,0 +1,25 @@
+
+    <div class="add-group">
+    <h2>Add new flight</h2>
+    <form #flightForm="ngForm">
+
+        <label for="destination">Destination:</label>
+        <input type="text" placeholder="Destination" id="destination" name="destination" #destination="ngModel" [(ngModel)]="flightData.destination"
+            class="form-control">
+
+        <label for="origin">Origin:</label>
+        <input type="text" id="origin" name="origin" #destination="ngModel" [(ngModel)]="flightData.origin" placeholder="Origin"
+            class="form-control">
+
+        <label for="depDate">Date:</label>
+        <input type="date" id="depDate" name="depDate" #destination="ngModel" [(ngModel)]="flightData.depDate" class="form-control">
+
+        <label for="depTime">Time:</label>
+        <input type="time" id="depTime" name="depTime" #destination="ngModel" [(ngModel)]="flightData.depTime" class="form-control">
+
+        <label for="fileUpload">Image:</label>
+        <input type="file" (change)="selectFile($event)" class="form-control">
+
+        <input type="submit" class="create" value="Create" (click)="upload()" class="button">
+    </form>
+</div>
