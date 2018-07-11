@@ -1,0 +1,7 @@
+<div class="pagin">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" (click)="prevPage()">Previous</a></li>
+    <li class="page-item"[class.active]="item == currentPage"><a class="page-link" >{{currentPage}}</a></li>
+    <li class="page-item" ><a class="page-link" (click)="nextPage()">Next</a></li>
+  </ul>
+  </div>

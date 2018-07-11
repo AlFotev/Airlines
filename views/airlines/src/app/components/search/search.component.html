@@ -1,0 +1,28 @@
+<form #searchForm="ngForm" class="catalog-form">
+  <div class="tool">
+
+    <div class="form-group">
+      <label for="destination">Destination:</label>
+      <select id="destination" name="destination" [(ngModel)]="flightData.destination">
+        <option selected>-----------------</option>
+        <option *ngFor="let dest of destinations">{{dest}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="origin">Origin:</label>
+      <select id="origin" name="origin" [(ngModel)]="flightData.origin">
+        <option>-----------------</option>
+        <option *ngFor="let origin of origins">{{origin}}</option>
+      </select>
+    </div>
+
+
+    <div class="form-group">
+      <label for="depDate">Departure Date:</label>
+      <input type="date" id="depDate" name="depDate" #depDate="ngModel" [(ngModel)]="flightData.depDate" placeholder="Departure Date">
+
+    </div>
+    <input type="submit" class="search" value="Search" (click)="search()">
+  </div>
+</form>
