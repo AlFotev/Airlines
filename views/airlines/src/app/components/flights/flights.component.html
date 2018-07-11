@@ -1,3 +1,18 @@
-<p>
-  flights works!
-</p>
+<main>
+  <app-search (onReacted)="result($event)" 
+  (onError)="invalidUserData($event)"
+  (onAction)="transfer($event)"></app-search>
+
+  <div class="center">
+    <h1 *ngIf="empty">{{empty}}</h1>
+  </div>
+
+
+  <section class="added-flights" *ngIf="!empty">
+      <div class="center">
+    <app-flight *ngFor="let flight of allFlights" [theFlight]="flight" (changeDetect)="ngOnInit()"></app-flight>
+    </div>
+  </section>
+
+  <app-paginator [length]="length" [page]="page" (onReacted)="takeCurrentPage($event)"></app-paginator>
+</main>

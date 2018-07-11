@@ -5,6 +5,7 @@ let access = [];
 module.exports = {
     loginPost: (req, res) => {
         let reqUser = req.body;
+        console.log(reqUser)
         User.findOne({ email: reqUser.email })
             .then(user => {
                 if (!user.authenticate(reqUser.password)) {

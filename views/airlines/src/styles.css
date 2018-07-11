@@ -3,10 +3,7 @@
     font-family:Amaranth ;
 }
 
-.log-out:hover{
-   color:red;
-}
-li,.log-out{
+li:not(.welcome):not(.cart){
     list-style-type: none;
     display: inline-block;
     border: 2px solid lightsteelblue;
@@ -15,8 +12,12 @@ li,.log-out{
     width: 100px;
     text-align: center;
 }
-li:hover{
+li:not(.welcome):hover{
     transform: scale(1.1);
+}
+.logout:hover
+{
+    color:red;
 }
 nav{
     background: cornflowerblue;
@@ -27,7 +28,7 @@ nav{
     padding-top: 0;
 }
 .left-container,.right-container{
-    width: 49%;
+    width: 48%;
 }
 .right-container{
     text-align: center;
@@ -45,6 +46,10 @@ h2{
 label{
     color:gray;
     font-size: 25px;
+    display: inline-block;
+    margin-bottom: .5rem;
+    text-align: left;
+    width: 100%;
 }
 main{
     text-align: center;
@@ -81,13 +86,17 @@ footer{
 }
 
 .catalog-form{
-    background: url("../img/plane.jpg") no-repeat center ;
-    margin: auto;
-    width: 60%;
-    padding-left: 530px;
+    background: url("./assets/img/plane.jpg") no-repeat center ;
+    width: 100%;
 }
 span,.log-out,.cart{
     margin-right:10px;
+}
+.cart{
+    float:right;
+    list-style-type: none; 
+    margin-right:40px;
+    margin-left:20px;  
 }
 .flight-parameters
 {
@@ -181,10 +190,15 @@ span,.log-out,.cart{
     display: block;
     margin: auto;
 }
+.center{
+    width:90%;
+    margin:0 auto;
+}
 .added-flight{
     color: black;
     cursor: pointer;
-    width: 400px;
+    min-width: 300px;
+    width:31%;
     border: 2px solid blue;
     text-align: center;
     background: cornflowerblue;
@@ -194,9 +208,8 @@ span,.log-out,.cart{
     margin-bottom: 20px;
     margin-top: 10px;
     height: 250px;
-}
-.buttons-container{
-
+    display:inline-block;
+    float:left;
 }
 .picture-added-flight{
     width: 200px;
@@ -204,14 +217,15 @@ span,.log-out,.cart{
     border-radius: 50%;
 }
 .added-flights{
-    display: flex;
-    justify-content: space-around;
+    position: relative;
+    min-height: 600px;
+    width:100%;
 }
 .save-changes{
     width: 140px;
 }
 .edit-flight-detail{
-    background: url("../img/pencil.png") center;
+    background: url("./assets/img/pencil.png") center;
     width: 50px;
     height: 50px;
     border: 2px solid blue;
@@ -286,11 +300,13 @@ h3{
 .nav-register{
     text-align: center;
 }
-.welcome{
-    color:white;
-    float: right;
-    position: relative;
-    top: -46px;
-    right: 46px;
+footer{
+    margin-top: 100px;
+    text-align: center;
+    background: cornflowerblue;
+    padding: 20px 0;
+    color: white;
+    position:relative !important;
+    width: 100%;
 }
 

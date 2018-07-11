@@ -4,8 +4,9 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 const passport = require('passport')
 const cors = require('cors')
+
 var corsOptions = {
-  origin: 'http://localhost:4200',
+  origin: 'http://localhost:4200' ,
   optionsSuccessStatus: 200,
   credentials: true
 }

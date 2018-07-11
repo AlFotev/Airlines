@@ -3,7 +3,7 @@ import { FlightForm } from '../../models/flight.model';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { Router } from '@angular/router';
 import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
-import { uploadService } from '../../services/upload.service';
+import { flightService } from '../../services/flight.service';
 let uri = "http://localhost:3000/upload";
 
 @Component({
@@ -16,7 +16,7 @@ export class AdminComponent {
   public fd = new FormData();
   public selectedFile: File = null;
   constructor(private route: Router,
-    private upService: uploadService
+    private flightService: flightService
   ) {
 
   }
@@ -39,10 +39,12 @@ export class AdminComponent {
     )
   }
   upload() {
-    this.upService.uploadFile(this.fd)
-      .subscribe(events => {
-        console.log(events)
+    this.flightService.createFlight(this.fd)
+      .subscribe(response => {
+       if(response.type == 4){
         this.route.navigateByUrl("/flights")
+       }      
       })
   }
+  
 }

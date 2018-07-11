@@ -10,12 +10,19 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FlightsComponent } from './components/flights/flights.component';
+import { FlightComponent} from './components/flight/flight.component';
 ////
 import {AuthService} from './services/auth.service';
 import {SessionService} from './services/session.service';
 import {AdminGuard} from './guards/admin.guard';
 import { AdminComponent } from './components/admin/admin.component';
-import { uploadService } from './services/upload.service';
+import { flightService } from './services/flight.service';
+import { PaginatorComponent } from './components/paginator/paginator.component';
+import { SearchComponent } from './components/search/search.component';
+import { DetailsComponent } from './components/details/details.component';
+import { EditComponent } from './components/edit/edit.component';
+import { CartComponent } from './components/cart/cart.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +30,14 @@ import { uploadService } from './services/upload.service';
     LoginComponent,
     RegisterComponent,
     FlightsComponent,
-    AdminComponent
+    AdminComponent,
+    FlightComponent,
+    PaginatorComponent,
+    SearchComponent,
+    DetailsComponent,
+    EditComponent,
+    CartComponent,
+    ProfileComponent
   ],
   imports: [NgbModule.forRoot(),
     BrowserModule,
@@ -32,7 +46,7 @@ import { uploadService } from './services/upload.service';
     HttpClientModule,
     FileUploadModule
   ],
-  providers: [AuthService,SessionService,AdminGuard,uploadService],
+  providers: [AuthService,SessionService,AdminGuard,flightService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

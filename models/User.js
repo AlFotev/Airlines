@@ -36,8 +36,9 @@ User.seedAdminUser = ()=>{
      let salt = encryption.generateSalt();
      let hashedPass = encryption.generateHashedPassword(salt,'aD12min');
      User.create({
-        email:"Admin",
+        email:"Admin@airlines.bg",
         hashedPass,
+        name: "Admin",
         salt,
         roles:["Admin"]
      });

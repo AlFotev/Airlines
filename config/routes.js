@@ -34,5 +34,9 @@ module.exports = (app) => {
         app.post("/login", controllers.user.loginPost),
         app.post("/register", controllers.user.register),
         app.post("/logout", controllers.user.logout),
-        app.post("/upload", upload.single("image"), controllers.uploader.flightImage)
+        app.post("/upload", upload.single("image"), controllers.flights.create),
+        app.post("/flights",controllers.flights.getAll);
+        app.post("/flights/search",controllers.flights.search);
+        app.get("/flights/dest",controllers.flights.getDest);
+        app.get("/flights/ori",controllers.flights.getOri);
 }

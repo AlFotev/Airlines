@@ -6,3 +6,14 @@ a:hover{
     color:yellow;
     text-decoration:none;
 }
+.welcome{
+    list-style-type: none;
+    display: inline-block;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    color:white;
+}
+.logout,.welcome {
+float:right;
+}

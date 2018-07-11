@@ -1,18 +1,30 @@
 <nav>
     <div class="navigation">
         <ul>
-            <li><a routerLink="/flights">Flights</a></li>
-            <li *ngIf="!session.checkSession()"><a routerLink="/login">Login</a></li>
-            <li *ngIf="!session.checkSession()"><a routerLink="/register">Register</a></li>
-            <li *ngIf="session.checkSession()"><a routerLink="/mytickets">My Tickets</a></li>
+            <li>
+                <a routerLink="/flights">Flights</a>
+            </li>
+            <li *ngIf="!session.checkSession()">
+                <a routerLink="/login">Login</a>
+            </li>
+            <li *ngIf="!session.checkSession()">
+                <a routerLink="/register">Register</a>
+            </li>
+            <li *ngIf="session.checkSession()">
+                <a routerLink="/mytickets">My Tickets</a>
+            </li>
+            <li class="cart">
+                    <a routerLink="/cart"><img src="../assets/img/cart.png" alt="cart"></a>
+            </li>
             <li *ngIf="session.isAdmin()">
-                <a routerLink="/admin">Admin</a>
-              </li>
-            <li (click)='logout()' *ngIf="session.checkSession()">Logout</li>
-        </ul>
+                <a routerLink="/admin">Add Flight</a>
+            </li>
+            <li (click)='logout()' *ngIf="session.checkSession()" class="logout">Logout</li>
+            <li *ngIf="session.checkSession()" class="welcome">Hello , {{session.getName()}}! | </li>
+            </ul>
     </div>
-    <p *ngIf="session.checkSession()" class="welcome">Hello , {{session.getName()}}!</p>
-  </nav>
+
+</nav>
 <router-outlet></router-outlet>
 
 <footer>SoftUni Airlines</footer>
