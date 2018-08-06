@@ -36,6 +36,12 @@ export class flightService {
     getAllFlightOrigins(){
         return this.http.get(addr + `flights/ori`);
     }
+    getDetails(id){
+        return this.http.get(addr + `details/${id}`);
+    }
+    editFlight(fd,id) {
+        return this.http.put(addr + `edit/${id}`, fd)
+    }
 
 
 }

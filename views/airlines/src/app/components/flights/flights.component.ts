@@ -42,7 +42,6 @@ export class FlightsComponent implements OnInit {
           departureDate: this.route.snapshot.queryParams["departureDate"],
           page: this.page
         }
-        console.log(this.qpr)
         this.flightService.getAllFlights(this.qpr).subscribe(response => {
           this.allFlights = response["msg"];
           this.length = response["length"];

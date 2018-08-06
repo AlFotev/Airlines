@@ -1,25 +1,27 @@
 <main>
-  <section class="single-ticket">
+    <div *ngIf="!addedTickets">Yor cart is empty!!!</div>
+  <section class="single-ticket" *ngFor="let ticket of addedTickets">
       <div class="left-ticket-container">
-          <img src="static/img/Venice.jpg" alt="" class="destination-img">
+          <img [src]="ticket.image" alt="" class="destination-img">
           <div class="flight-parameters">
-              <span class="ticket-price">Price: 300$</span>
-              <span class="ticket-class">Class: Economy</span>
+              <span class="ticket-price">Price: {{ticket.price}}$</span>
+              <span class="ticket-class">Class: {{ticket.type}}</span>
           </div>
       </div>
       <div class="right-ticket-container">
-          <h2>CLUJ-NAPOCA</h2>
-          <p>from Sheffield</p>
-          <p>15 January</p>
-          <p>14:00</p>
+          <h2>{{ticket.destination}}</h2>
+          <p>from {{ticket.origin}}</p>
+          <p>{{ticket.departureDate}}</p>
+          <p>{{ticket.departureTime}}</p>
           <div>
-          <span class="number-of-tickets">2</span>
-              <a href="" class="remove">REMOVE</a>
+              <a href="" [id]="ticket._id" class="remove" (click)="remove($event)">REMOVE</a>
           </div>
       </div>
   </section>
+
+
   <section class="ticket-checkout">
-      <div class="total">Sub total: 600$</div>
-      <a href="" class="checkout">Checkout</a>
+      <div class="total">Sub total: {{totalSumOfTickets}}$</div>
+      <a href="" class="checkout" (click)="checkOut($event)">Checkout</a>
   </section>
 </main>

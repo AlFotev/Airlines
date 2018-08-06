@@ -9,6 +9,7 @@ import {EditComponent} from '../components/edit/edit.component';
 import {DetailsComponent} from '../components/details/details.component';
 import {ProfileComponent} from '../components/profile/profile.component';
 import {AdminGuard} from '../guards/admin.guard';
+import {AuthGuard} from '../guards/auth.guard';
 
 const routes: Routes = [
   { path: "", redirectTo: "flights" , pathMatch: "full"},
@@ -16,10 +17,10 @@ const routes: Routes = [
   { path: "admin", canActivate:[AdminGuard],component: AdminComponent },
   { path: "register", component: RegisterComponent },
   { path: "flights", component: FlightsComponent },
-  { path: "cart", component: CartComponent },
-  { path: "mytickets", component: ProfileComponent },
-  { path: "edit", component: EditComponent },
-  { path: "details", component: DetailsComponent },
+  { path: "cart", canActivate:[AuthGuard], component: CartComponent },
+  { path: "mytickets",canActivate:[AuthGuard],  component: ProfileComponent },
+  { path: "edit/:id",  canActivate:[AdminGuard], component: EditComponent },
+  { path: "details/:id" , canActivate:[AuthGuard], component: DetailsComponent }
 ];
 
 @NgModule({

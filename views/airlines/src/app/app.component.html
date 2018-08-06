@@ -14,7 +14,7 @@
                 <a routerLink="/mytickets">My Tickets</a>
             </li>
             <li class="cart">
-                    <a routerLink="/cart"><img src="../assets/img/cart.png" alt="cart"></a>
+                    <a routerLink="/cart"><img src="../assets/img/cart.png" alt="cart"><span>{{items}}</span></a>
             </li>
             <li *ngIf="session.isAdmin()">
                 <a routerLink="/admin">Add Flight</a>
@@ -25,6 +25,7 @@
     </div>
 
 </nav>
+<div [@popOverState] = "stateName()" [ngClass]="{'notifier': report, 'notifierEr': reportError}" (click)="hide()">{{message}}</div>
 <router-outlet></router-outlet>
 
 <footer>SoftUni Airlines</footer>

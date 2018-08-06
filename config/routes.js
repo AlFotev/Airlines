@@ -30,7 +30,6 @@ var upload = multer({
 });
 
 module.exports = (app) => {
-    app.get("/", controllers.home.index),
         app.post("/login", controllers.user.loginPost),
         app.post("/register", controllers.user.register),
         app.post("/logout", controllers.user.logout),
@@ -39,4 +38,10 @@ module.exports = (app) => {
         app.post("/flights/search",controllers.flights.search);
         app.get("/flights/dest",controllers.flights.getDest);
         app.get("/flights/ori",controllers.flights.getOri);
+        app.get("/details/:id",controllers.flights.getDetails);
+        app.get("/tickets/:id",controllers.tickets.getTickets);
+        app.put("/edit/:id", upload.single("image"), controllers.flights.editFlight);
+        app.post("/details/:id",controllers.tickets.create);
+        app.post("/shop/:id",controllers.tickets.buy);
+        app.get("/shop/:id",controllers.tickets.getBoughtTickets);
 }

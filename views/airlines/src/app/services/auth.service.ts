@@ -35,13 +35,12 @@ export class AuthService {
             addr + "register",
             body,
             httpOptions)
-        }
-        logout(){
-            this.http.post(
-                addr + "logout",
-                {},
-                httpOptions
-            )
-        }
-                
     }
+    logout() {
+        this.http.post(
+            addr + "logout",
+            {},
+            httpOptions
+        )
+    }
+}

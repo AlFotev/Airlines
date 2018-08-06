@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { RegisterForm } from '../../models/register.form.model';
 import { AuthService } from '../../services/auth.service';
 import { SessionService } from '../../services/session.service';
+import { DataServiceService } from '../../services/data-service.service';
 
 
 
@@ -13,22 +14,48 @@ import { SessionService } from '../../services/session.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  public username :string;
-  public userData = new RegisterForm('', '', '','');
+  public username: string;
+  public userData = new RegisterForm('', '', '', '');
   constructor(
-    private state:SessionService,
+    private state: SessionService,
     private authService: AuthService,
-    private route: Router) { }
+    private route: Router,
+  private dataS:DataServiceService) { }
 
-    register(data){
-      this.authService.register(data)
-      .subscribe(info => {
-       this.username = info["name"];
-       this.state.loginSession(this.username,[]);
-       this.route.navigateByUrl("/flights")
-      },err=>{
+  register(data) {
+    this.authService.register(data)
+      .subscribe(user => {
+        this.authService.login(data)
+          .subscribe(feed => {
+            if (feed["msg"] === "success") {
+              this.username = feed["name"];
+              this.state.loginSession(this.username, [], feed["_id"]);
+              let notObj = {
+                "report":true,
+                "reportError":false,
+                "msg":"You have successfuly registered, Welcome to flight service!"
+              }
+              this.dataS.changeMessage(notObj);
+            } else if (feed["msg"] === "wrong") {
+              let notObj = {
+                "report":false,
+                "reportError":true,
+                "msg":"Something went wrong, please try again"
+              }
+              this.dataS.changeMessage(notObj);
+            }
+          }, errorr => {
+            let notObj = {
+              "report":false,
+              "reportError":true,
+              "msg":"Something went wrong, please try again"
+            }
+            this.dataS.changeMessage(notObj);
+          })
+
+      }, err => {
         console.log(err)
       })
-    }
+  }
 
 }

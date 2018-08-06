@@ -1,5 +1,5 @@
 <div class="random">
-  <a class="added-flight">
+  <a [routerLink]="['/details', _id]"class="added-flight">
   <img [src]="image" alt="image" class="picture-added-flight" [id]="_id">
   <h3>{{destination}}</h3>
   <span>from {{origin}}</span><span>{{depDate}}</span>

@@ -51,7 +51,7 @@ module.exports = {
                 res.status(500).json({ "msg": err });
             })
     },
-    search: (req, res, next) => {
+    search: function(req, res, next){
         let criteria = {
             origin: req.body.origin,
             destination: req.body.destination,
@@ -76,7 +76,7 @@ module.exports = {
                 res.status(500).json({ "msg": err });
             })
     },
-    getDest: (req, res, next) => {
+    getDest: function(req, res, next) {
         Flight.find({})
             .then(allFlights => {
                 let data = [];
@@ -105,5 +105,41 @@ module.exports = {
             .catch(err => {
                 console.log(err)
             })
+    },
+    getDetails: (req, res, next) => {
+        let id = req.params.id;
+        Flight.findById(id)
+            .then(flight => {
+                res.status(201).json({ "flight": flight })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    },
+    editFlight: function(req, res, next){
+        let id = req.params.id;
+        Flight.deleteOne({ "_id": id })
+            .then(success => {
+                Flight.create({
+                    origin: req.body.origin,
+                    destination: req.body.destination,
+                    departureTime: req.body.depTime,
+                    departureDate: req.body.depDate,
+                    image: "http://localhost:" + domain.development.port + "/" + req.file.path || "http://localhost:" + domain.production.port + "/" + req.file.path
+                }).then(flight => {
+                    res.status(201).json({ "msg": flight })
+                })
+                    .catch(err => {
+                        console.log(err);
+                        res.status(500).json({ "msg": "fail" });
+                    })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+    },
+    deleteFlight: function(req, res, next){
+
     }
 }

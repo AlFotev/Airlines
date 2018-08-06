@@ -2,6 +2,7 @@ const encryption = require('../util/encryption');
 const User = require('../models/User');
 let name = '';
 let access = [];
+let id = '';
 module.exports = {
     loginPost: (req, res) => {
         let reqUser = req.body;
@@ -14,6 +15,7 @@ module.exports = {
                 }
                 name = user.name;
                 access = user.roles;
+                id = user._id;
                 req.logIn(user, (err, user) => {
                     if (err) {
                         res.send({ "msg": "wrong" })
@@ -21,7 +23,8 @@ module.exports = {
                         res.send({
                             "msg": "success",
                             "name": name,
-                            "access":access
+                            "access":access,
+                            "_id":id
                         });
                     }
                 })
@@ -51,8 +54,9 @@ module.exports = {
 
                     res.send({
                         "msg": "success",
-                        "name": name
-                    });
+                        "name": name,
+                        "_id":user._id              
+                          });
                 }
             });
         } catch (e) {

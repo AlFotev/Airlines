@@ -1,3 +1,54 @@
-<p>
-  details works!
-</p>
+<main>
+    <section class="ticket-area">
+        <div class="ticket-area-left">
+            <img [src]="image" alt="">
+        </div>
+        <div class="ticket-area-right">
+            <h3>{{destination}}</h3>
+            <div>from {{origin}}</div>
+            <div class="data-and-time">{{date}} {{time}}
+                <a [routerLink]="['/edit', id]" class="edit-flight-detail" *ngIf="session.isAdmin()"></a>
+            </div>
+        </div>
+    </section>
+    <section class="seat-info"  *ngIf="session.isAdmin()">
+        <form id="creation" class="seat-form" #seatForm="ngForm">
+            <input type="text" placeholder="Price" id="price" name="price" #price="ngModel" [(ngModel)]="ticketData.price">
+            <select type="text" id="type" name="type" #type="ngModel" [(ngModel)]="ticketData.type">
+                <option>Business</option>
+                <option>Economy</option>
+            </select>
+            <input type="number" name="quantity" min="1" max="999" placeholder="Tickets Counter" id="number" name="number" #number="ngModel"
+                [(ngModel)]="ticketData.number">
+            <input type="submit" class="create-seat" value="Create Seat" (click)="createSeat()">
+        </form>
+    </section>
+    <section class="flight-details">
+        <form class="seat-form" #ecticketForm="ngForm">
+            <span>${{businessPrice}}</span>
+            <span>Business</span>
+            <select id="seatB" name="seatB" [(ngModel)]="businessTicket.number" (change)="priceTag($event.target.value)">
+                <option>-----------------</option>
+                <option *ngFor="let ticket of businessTickets">{{ticket.number}}</option>
+            </select>
+            <input type="submit" id="bus" class="create-seat" value="Add to Cart" (click)="addTicket($event)">
+            <a href="#"  id="clearBus" class="delete" (click)="clear($event)">X</a>
+        </form>
+
+    </section>
+    <section class="flight-details">
+        <form action="" class="seat-form" #ecticketForm="ngForm">
+            <span>${{economyPrice}}</span>
+            <span>Economy</span>
+            <select id="seatE" name="seatE" [(ngModel)]="economyTicket.number" (change)="priceTag($event.target.value)">
+                <option>-----------------</option>
+                <option *ngFor="let ticket of economyTickets">{{ticket.number}}</option>
+            </select>
+            <input type="submit" id="eco" class="create-seat" value="Add to Cart" (click)="addTicket($event)">
+            <a href="#" id="clearEco" class="delete" (click)="clear($event)">X</a>
+        </form>
+
+
+
+    </section>
+</main>

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { LoginForm } from '../../models/login.form.model';
 import { AuthService } from '../../services/auth.service';
 import { SessionService } from '../../services/session.service';
-
+import {DataServiceService} from '../../services/data-service.service'
 
 
 @Component({
@@ -20,7 +20,8 @@ export class LoginComponent {
   constructor(
     private state:SessionService,
     private authService: AuthService,
-    private route: Router
+    private route: Router,
+    private dataS:DataServiceService
   ) { }
 
   login(dataLog) {
@@ -29,13 +30,22 @@ export class LoginComponent {
         if(data["msg"] === "success"){
           this.username = data["name"];
           this.access = data["access"];
-          this.state.loginSession(this.username,this.access);
-          this.route.navigateByUrl("/flights")
+          this.state.loginSession(this.username,this.access,data["_id"]);
         }else if(data["msg"] === "wrong"){
-          console.log("Wrong email or password")
+          let notObj = {
+            "report":false,
+            "reportError":true,
+            "msg":"Wrong email or password"
+          }
+          this.dataS.changeMessage(notObj)
         }
       }, err => {
-         console.log("something went wrong,please try again")
+        let notObj = {
+          "report":false,
+          "reportError":true,
+          "msg":"Something went wrong, please try again"
+        }
+        this.dataS.changeMessage(notObj)
       })
   }
 

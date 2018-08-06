@@ -1,9 +1,10 @@
-const home = require('./home-controller');
+
 const user = require('./user-controller');
-const flights = require('./flight-controller')
+const flights = require('./flight-controller');
+const tickets = require('./ticket-controller');
 
 module.exports = {
- home,
  user,
- flights
+ flights,
+ tickets
 }

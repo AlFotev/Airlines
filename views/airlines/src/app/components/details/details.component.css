@@ -1,0 +1,11 @@
+#seatE,#seatB, #type {
+    width: 140px;
+    border: 2px solid lightsteelblue;
+    padding: 5px;
+    height: 38px;
+    text-align: center;
+    margin: 20px;
+}
+#creation{
+    margin-left:36px;
+}

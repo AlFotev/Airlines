@@ -56,6 +56,7 @@ main{
     margin-top: 5px;
     position: relative;
     padding-bottom: 60px;
+    min-height:450px;
 }
 form{
     text-align: center;
@@ -230,15 +231,14 @@ span,.log-out,.cart{
     height: 50px;
     border: 2px solid blue;
     border-radius: 100%;
-    margin-left: 25px;
-    display: inline-block;
+    margin: 0 auto;
+    display: -webkit-box;
 }
 .ticket-area-left img{
-    width: 100%;
-    height: 90%;
-    padding-top: 10px;
-    padding-bottom: 5px;
-    margin: 0;
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        margin: 0;
 }
 .ticket-area{
     display: flex;
@@ -246,15 +246,17 @@ span,.log-out,.cart{
     background: cornflowerblue;
     width: 60%;
     margin: auto;
-    height: 235px;
 }
 .ticket-area-right{
     float: left;
     text-align: center;
-    padding-top: 30px;
+    padding-top: 7%;
+    width: 100%;
+    height: 100%;
 }
 .data-and-time{
-    margin-left: 85px;
+    width: 100%;
+    padding-bottom: 10px;
 }
 .seat-form{
     display: inline-flex;
@@ -263,7 +265,8 @@ span,.log-out,.cart{
     margin:20px;
 }
 .seat-form span{
-    margin:20px;
+    margin-top: 31px;
+    font-size: 19px;
 }
 .delete{
     border-radius: 50%;
@@ -277,17 +280,33 @@ span,.log-out,.cart{
     margin: auto;
 }
 .purchased-ticket{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     text-align: left;
-    padding:0 0 0 75px;
+    padding: 10px 5px 19px 5px;
+    border: 1px solid;
     font-size: 15px;
-    width: 100%;
-    margin: auto;
+    width: 90%;
+    margin: 20px;
+    left: 5%;
+    position: relative;
+    border-radius: 88px;
+    border: 1px solid lightblue;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 .purchased-left img{
-    width: 400px;
-    height: 70%;
-    padding:0 0 0 15px;
+    width: 100%;
+    max-width:400px;
+    height: 100%;
+    padding:5px;
+    margin: 5px 0 10px 5px;
+    border: 1px solid lightblue;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.tDetails{
+
 }
 .purchased-right{
     padding-left: 20px;
@@ -309,4 +328,35 @@ footer{
     position:relative !important;
     width: 100%;
 }
-
+.notifier{
+    position: absolute;
+    display: block;
+    width: 33%;
+    height: 100px;
+    padding: 5px;
+    margin: 0 auto;
+    left: 33%;
+    text-align: center;
+    background: darkslateblue;
+    z-index: 9;
+    color: white;
+    border: 2px solid darkgray;
+    border-radius: 11px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.notifierEr{
+    position: absolute;
+    display: block;
+    z-index: 9;
+    width: 33%;
+    height: 100px;
+    padding: 5px;
+    margin: 0 auto;
+    left: 33%;
+    text-align: center;
+    background: tomato;
+    color: white;
+    border: 2px solid darkgray;
+    border-radius: 11px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

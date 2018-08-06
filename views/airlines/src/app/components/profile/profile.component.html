@@ -1,3 +1,26 @@
-<p>
-  profile works!
-</p>
+<main>
+    <h3>Your Flights</h3>
+    <h2 *ngIf="boughtItems.length < 1">You stil don't have any flights.
+        Please visit our flight catalog to purchase a flight.
+    </h2>
+    <section *ngFor="let ticket of boughtItems" class="purchased-ticket">
+        <div class="purchased-left">
+            <img [src]="ticket[1][0]['image']" alt="">
+        </div>
+        <div class="purchased-right">
+            <div>
+                <h3>{{ticket[1][0]["destination"]}}</h3>
+                <span>{{ticket[1][0]["departureDate"]}}</span>
+            </div>
+            <div>
+                from {{ticket[1][0]["origin"]}}
+                <span>{{ticket[1][0]["departureTime"]}}</span>
+            </div>
+            <div *ngFor="let t of ticket[1]" class="tDetails">
+                <p>Class: {{t["type"]}} Seat: {{t["number"]}} Price: {{t["price"]}}$</p>
+            </div>
+            <div>You have {{ticket[1].length}} ticket/s for this flight for total {{calcSum(ticket[1])}}$</div>
+        </div>
+
+    </section>
+</main>

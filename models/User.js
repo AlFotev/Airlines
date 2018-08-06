@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema({
         required:true
     },
     roles:[{type:mongoose.Schema.Types.String}],
+    purchasedItems:{
+        type:Array,
+        default:[]
+    }
 });
 
 userSchema.method({
