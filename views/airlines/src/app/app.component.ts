@@ -67,7 +67,6 @@ export class AppComponent implements OnInit{
       this.reportError = obj["reportError"];
       this.message = obj["msg"];
       this.toggleState()
-      console.log(this.show)
     })
   }
   stateName(){

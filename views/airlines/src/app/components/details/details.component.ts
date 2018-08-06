@@ -96,10 +96,8 @@ export class DetailsComponent implements OnInit {
             "reportError":true,
             "msg":response["ticket"]
           }
-          console.log("hi from fail")
           this.dataS.changeMessage(notObj);
         }else{
-          console.log("hi from win")
           let notObj = {
             "report":true,
             "reportError":false,
